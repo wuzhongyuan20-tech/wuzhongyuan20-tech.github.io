@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>✨ 二次元小窝 · 双生简历 ✨</title>
+    <style>
+        /* 全局二次元清新配色 + cute 风格 (保留原样) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fdeff2 0%, #f0e6f9 40%, #d9f0fa 100%);
+            min-height: 100vh;
+            padding: 1.5rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 10% 20%, rgba(255, 220, 240, 0.4) 0%, transparent 20%),
+                        radial-gradient(circle at 90% 70%, rgba(200, 210, 255, 0.5) 0%, transparent 25%),
+                        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 0px, rgba(255, 255, 255, 0.2) 2px, transparent 2px, transparent 8px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: rgba(255, 251, 254, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 48px 48px 40px 40px;
+            box-shadow: 0 20px 40px rgba(230, 160, 200, 0.25), 0 8px 20px rgba(0, 0, 0, 0.05), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+            padding: 2rem 2.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 控制栏——双切换按钮 */
+        .mode-switch-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 2rem;
+            margin-bottom: 2rem;
+            background: rgba(255, 240, 250, 0.6);
+            padding: 0.9rem 1.8rem;
+            border-radius: 60px;
+            border: 2px solid #ffffffd0;
+            box-shadow: 0 6px 0 #d0b2d0;
+        }
+        .switch-btn {
+            background: #ffe6f3;
+            border: 3px solid white;
+            border-radius: 40px;
+            box-shadow: 0 4px 0 #bba5cf, 0 4px 8px #f0c0d0;
+            padding: 0.6rem 1.8rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #713a62;
+            cursor: pointer;
+            transition: 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid white;
+        }
+        .switch-btn.active {
+            background: #ffcce6;
+            transform: scale(0.96);
+            box-shadow: 0 2px 0 #bba5cf, 0 3px 6px #d9a0c0;
+        }
+        .switch-btn:hover {
+            background: #ffd9f0;
+        }
+        .btn-emoji {
+            font-size: 1.5rem;
+            filter: drop-shadow(0 2px 2px #ffb0d0);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #7b4b7a;
+            text-shadow: 3px 3px 0 #ffc1cc, 0 2px 10px #ffe0f0;
+            margin-bottom: 1.8rem;
+            padding-bottom: 0.3rem;
+            display: inline-block;
+            letter-spacing: 2px;
+            border-bottom: 4px dotted #ffafd0;
+        }
+        .section-title::before {
+            content: "🌸";
+            font-size: 1.8rem;
+            margin-right: 0.5rem;
+            filter: drop-shadow(0 2px 4px #ffa0c0);
+        }
+        .section-title::after {
+            content: "🌸";
+            font-size: 1.8rem;
+            margin-left: 0.5rem;
+            filter: drop-shadow(0 2px 4px #aac8ff);
+        }
+
+        /* 个人简介头部 */
+        .profile {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            background: rgba(255, 240, 250, 0.5);
+            border-radius: 60px;
+            padding: 2rem 2.2rem;
+            border: 2px solid #ffffffb3;
+            box-shadow: 0 8px 0 #d0b2d0;
+        }
+        .avatar {
+            width: 160px;
+            height: 160px;
+            background: linear-gradient(135deg, #ffd0e8, #c3bef0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.8rem;
+            line-height: 1.2;
+            border: 6px solid white;
+            box-shadow: 0 10px 0 #b392ac, 0 10px 20px #f0b0d0;
+            transition: transform 0.2s ease;
+            color: #6a3e6a;
+            background-clip: padding-box;
+        }
+        .avatar:hover {
+            transform: scale(0.98) rotate(2deg);
+        }
+        .profile-text {
+            flex: 1;
+            min-width: 200px;
+        }
+        .profile-text h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #5f3d6b;
+            text-shadow: 2px 2px 0 #ffb6d1, 4px 4px 0 #fad0e6;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        .catch-phrase {
+            font-size: 1.4rem;
+            background: #fff0f5cc;
+            display: inline-block;
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            color: #873e6a;
+            font-weight: 600;
+            border: 2px dashed #ff9cc0;
+            box-shadow: 0 4px 0 #bda0cb;
+            backdrop-filter: blur(4px);
+        }
+
+        /* 技能 */
+        .skills-section {
+            margin-bottom: 3.5rem;
+        }
+        .skill-item {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.8rem 1rem;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 250, 250, 0.5);
+            padding: 0.8rem 1.2rem;
+            border-radius: 50px;
+            border: 2px solid #ffeef5;
+            box-shadow: 0 4px 0 #cfb0d0;
+        }
+        .skill-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #5e3a6b;
+            min-width: 100px;
+            padding-left: 0.3rem;
+            background: rgba(255, 225, 240, 0.7);
+            border-radius: 30px;
+            padding: 0.3rem 1rem;
+            text-align: center;
+            border: 2px solid white;
+        }
+        .progress-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex: 3 1 250px;
+        }
+        .progress-bar {
+            flex: 1;
+            height: 20px;
+            background-color: #ffe0ec;
+            border-radius: 30px;
+            border: 3px solid white;
+            box-shadow: inset 0 2px 5px #bda0b0, 0 2px 0 #f5c6dc;
+            overflow: hidden;
+        }
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff9eb5, #ffc3d0, #fbaac3);
+            border-radius: 30px;
+            width: 0%;
+            box-shadow: 0 0 8px #ffbfd6;
+            transition: width 0.3s ease;
+        }
+        .percent {
+            font-weight: 700;
+            color: #a54e7a;
+            background: #fff0f8;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            min-width: 55px;
+            text-align: center;
+            border: 2px solid #ffbfd6;
+            box-shadow: 0 2px 0 #cf9ac8;
+        }
+
+        /* 项目卡片 (也用于正经版教育经历) */
+        .projects-section {
+            margin-bottom: 3rem;
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+        .project-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(6px);
+            border-radius: 40px 40px 30px 30px;
+            padding: 1.8rem 1.5rem;
+            border: 3px solid white;
+            box-shadow: 0 10px 0 #ccafcf, 0 15px 25px #e6c0d0;
+            transition: all 0.15s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 0 #b392bc, 0 20px 30px #d9b0c8;
+        }
+        .project-card h3 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #984b77;
+            text-shadow: 2px 2px 0 #ffd3e0;
+            margin-bottom: 0.8rem;
+            border-left: 10px solid #ffafd0;
+            padding-left: 0.9rem;
+        }
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0 0.8rem;
+        }
+        .tag {
+            background: #ffd9f0;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #a14b7c;
+            border: 2px solid white;
+            box-shadow: 0 2px 0 #bba6d0;
+        }
+        .project-desc {
+            font-size: 1.1rem;
+            color: #4d3355;
+            line-height: 1.5;
+            margin: 0.8rem 0;
+        }
+
+        /* 联系方式 */
+        .contact-section {
+            margin-bottom: 0.5rem;
+        }
+        .contact-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.8rem;
+        }
+        .contact-item {
+            flex: 0 1 auto;
+            background: #ffe6f3;
+            border: 3px solid white;
+            border-radius: 60px;
+            box-shadow: 0 6px 0 #bba5cf, 0 8px 12px #f0c0d0;
+            transition: 0.1s ease;
+        }
+        .contact-item:hover {
+            transform: scale(0.96);
+            box-shadow: 0 3px 0 #bba5cf, 0 5px 10px #e0b0c0;
+        }
+        .contact-item a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #713a62;
+            border-radius: 60px;
+            background: rgba(255, 240, 250, 0.7);
+        }
+        .contact-emoji {
+            font-size: 2rem;
+            filter: drop-shadow(2px 2px 0 #ffc0e0);
+        }
+        .footer-decoration {
+            text-align: center;
+            margin-top: 2.2rem;
+            font-size: 1.6rem;
+            opacity: 0.7;
+            letter-spacing: 6px;
+            color: #af8db0;
+        }
+        .last-update {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #974f7b;
+            background: #fff0f7;
+            border-radius: 30px;
+            padding: 0.4rem 1rem;
+            border: 2px solid #ffc4dd;
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width: 550px) {
+            .skill-item { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+            .skill-name { align-self: flex-start; width: auto; }
+            .progress-wrapper { width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 1.5rem 1rem; }
+            .profile { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .profile-text h1 { font-size: 2.2rem; }
+            .catch-phrase { font-size: 1.2rem; }
+            .avatar { width: 140px; height: 140px; font-size: 3.2rem; }
+            .section-title { font-size: 1.8rem; }
+            .contact-item a { padding: 0.7rem 1.5rem; font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 双切换按钮 -->
+        <div class="mode-switch-bar">
+            <div class="switch-btn" id="btnModeCute" data-mode="cute">
+                <span class="btn-emoji">😊</span> 不正经版 · Cute
+            </div>
+            <div class="switch-btn" id="btnModeSerious" data-mode="serious">
+                <span class="btn-emoji">🎓</span> 正经版 · Serious
+            </div>
+            <div class="switch-btn" id="btnLangZh" data-lang="zh">
+                <span class="btn-emoji">🇨🇳</span> 中文
+            </div>
+            <div class="switch-btn" id="btnLangEn" data-lang="en">
+                <span class="btn-emoji">🇬🇧</span> English
+            </div>
+        </div>
+
+        <!-- 个人简介板块 (动态填充) -->
+        <section class="profile" id="profileSection">
+            <div class="avatar" title="二次元头像占位">(◕‿◕✿)</div>
+            <div class="profile-text" id="profileText">
+                <!-- 内容由js生成，避免重复静态 -->
+            </div>
+        </section>
+
+        <!-- 技能特长 -->
+        <section class="skills-section">
+            <h2 class="section-title" id="skillsTitle"></h2>
+            <div id="skillsContainer" class="skills-container"></div>
+        </section>
+
+        <!-- 项目经历 / 教育经历 -->
+        <section class="projects-section">
+            <h2 class="section-title" id="projectsTitle"></h2>
+            <div id="projectsContainer" class="project-grid"></div>
+        </section>
+
+        <!-- 联系方式 (固定结构, 但内部文本通过i18n切换) -->
+        <section class="contact-section">
+            <h2 class="section-title" id="contactTitle"></h2>
+            <div class="contact-list">
+                <div class="contact-item"><a href="mailto:2226336683@qq.com" target="_blank"><span class="contact-emoji">📧</span> <span class="contact-text" data-i18n="email">邮箱</span></a></div>
+                <div class="contact-item"><a href="https://github.com/wuzhongyuan20-tech" target="_blank"><span class="contact-emoji">🐙</span> <span class="contact-text" data-i18n="github">GitHub</span></a></div>
+                <div class="contact-item"><a href="#" target="_blank"><span class="contact-emoji">🔗</span> <span class="contact-text" data-i18n="x">X</span></a></div>
+                <div class="contact-item"><a href="#" target="_blank"><span class="contact-emoji">🎀</span> <span class="contact-text" data-i18n="bili">哔哩哔哩</span></a></div>
+            </div>
+            <!-- 底部额外信息：邮箱+最后更新 -->
+            <div id="contactExtra" style="text-align: center; margin-top: 1.5rem;"></div>
+        </section>
+
+        <div class="footer-decoration" id="footerDeco">
+            🍥 🍡 🍧 ごちそうさま 🍧 🍡 🍥
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ---------- 数据定义 ----------
+            // 模式: cute / serious ; 语言: zh / en
+            const content = {
+                cute: {
+                    zh: {
+                        profile: {
+                            name: '高木 大大 <span class="highlight">⚡</span>',
+                            catch: '✨ 来自异世界的游戏苦手 ✨',
+                            extra: '🌟 是个绝世非酋 🌟'
+                        },
+                        skillsTitle: '技能魔法书',
+                        skills: [
+                            { name: 'deep seek', percent: 95 },
+                            { name: '豆包', percent: 88 },
+                            { name: '千问', percent: 78 },
+                            { name: '文心一言', percent: 85 },
+                            { name: '元宝', percent: 60 }
+                        ],
+                        projectsTitle: '魔法项目',
+                        projects: [
+                            { title: '✨ 新番吐槽机✨', tags: ['Nekomoe kissaten', 'LoliHouse', 'Kusuriya no Hitorigoto'], desc: '随时切换战斗形态' },
+                            { title: '🍡 二次元画廊', tags: ['轻之国度', 'venera', 'BILIBILI'], desc: '动漫插图品鉴，校园轻小说插画收藏，二创美图分享' },
+                            { title: '🐱 游戏领域的游侠', tags: ['steam', 'wegame', 'PlayStation'], desc: '仅用10分钟熟悉一款游戏，然后维持在普通人的水平。' }
+                        ],
+                        contactTitle: '找到我',
+                        extraHtml: '⭐ 主邮箱: 2226336683@qq.com  |  魔法使ID: @Asily',
+                        lastUpdate: null   // 不正经没有最后更新
+                    },
+                    en: {
+                        profile: {
+                            name: 'Takagi <span class="highlight">⚡</span>',
+                            catch: '✨ Gamer from another world ✨',
+                            extra: '🌟 Unlucky chara 🌟'
+                        },
+                        skillsTitle: 'Skill Magic Book',
+                        skills: [
+                            { name: 'deep seek', percent: 95 },
+                            { name: 'Doubao', percent: 88 },
+                            { name: 'Qianwen', percent: 78 },
+                            { name: 'Wenxin Yiyan', percent: 85 },
+                            { name: 'Yuanbao', percent: 60 }
+                        ],
+                        projectsTitle: 'Magic Projects',
+                        projects: [
+                            { title: '✨ Anime Spoil tool', tags: ['Nekomoe', 'LoliHouse', 'Kusuriya'], desc: 'Switch combat forms anytime' },
+                            { title: '🍡 ACG Gallery', tags: ['LightNovel', 'venera', 'BILIBILI'], desc: 'Illustration collection, fanart share' },
+                            { title: '🐱 Game Ranger', tags: ['steam', 'wegame', 'PlayStation'], desc: '10 mins to get familiar, then stay average.' }
+                        ],
+                        contactTitle: 'Contact Me',
+                        extraHtml: '⭐ Email: 2226336683@qq.com  |  Magic ID: @Asily',
+                        lastUpdate: null
+                    }
+                },
+                serious: {
+                    zh: {
+                        profile: {
+                            name: '吴中原',
+                            catch: '🎓 数据科学硕士 · 某大学',
+                            extra: '研究方向：机器学习 | 因果推断 | 用数据讲述故事'
+                        },
+                        skillsTitle: '核心技能',
+                        skills: [
+                            { name: 'Python', percent: 90 },
+                            { name: '数据分析', percent: 88 },
+                            { name: '计量/统计', percent: 85 },
+                            { name: 'Stata', percent: 80 },
+                            { name: '学术写作', percent: 75 }
+                        ],
+                        projectsTitle: '教育/课程经历',
+                        projects: [
+                            { title: '本科 数据科学与大数据技术', tags: ['XX大学', '2022-2026'], desc: '主修：Python、数据库、机器学习、统计学' },
+                            { title: '硕士 应用统计', tags: ['XX大学', '2026-今'], desc: '研究方向：因果推断、文本挖掘、计量经济学' },
+                            { title: '课程项目', tags: ['Kaggle', '论文复现'], desc: 'Kaggle竞赛前10% · 计量论文 reproducible' }
+                        ],
+                        contactTitle: '联系方式',
+                        extraHtml: '📧 2226336683@qq.com  |  🆔 GitHub: wuzhongyuan20-tech',
+                        lastUpdate: '最后更新: 2026-03-16'
+                    },
+                    en: {
+                        profile: {
+                            name: 'Zhongyuan Wu',
+                            catch: '🎓 M.S. in Data Science · XX University',
+                            extra: 'Research: Machine Learning | Causal Inference | Data Storyteller'
+                        },
+                        skillsTitle: 'Core Skills',
+                        skills: [
+                            { name: 'Python', percent: 90 },
+                            { name: 'Data Analysis', percent: 88 },
+                            { name: 'Econometrics/Stat', percent: 85 },
+                            { name: 'Stata', percent: 80 },
+                            { name: 'Academic Writing', percent: 75 }
+                        ],
+                        projectsTitle: 'Education / Courses',
+                        projects: [
+                            { title: 'B.S. Data Science', tags: ['XX University', '2022-2026'], desc: 'Python, DB, ML, Statistics' },
+                            { title: 'M.S. Applied Statistics', tags: ['XX University', '2026-present'], desc: 'Causal Inference, Text Mining, Econometrics' },
+                            { title: 'Course Projects', tags: ['Kaggle', 'Reproducible'], desc: 'Kaggle top 10% · Reproducible econ paper' }
+                        ],
+                        contactTitle: 'Contact',
+                        extraHtml: '📧 2226336683@qq.com  |  🆔 GitHub: wuzhongyuan20-tech',
+                        lastUpdate: 'Last updated: 2026-03-16'
+                    }
+                }
+            };
+
+            // 当前状态
+            let currentMode = 'cute';      // 'cute' or 'serious'
+            let currentLang = 'zh';         // 'zh' or 'en'
+
+            // 获取容器
+            const profileTextDiv = document.getElementById('profileText');
+            const skillsTitle = document.getElementById('skillsTitle');
+            const skillsContainer = document.getElementById('skillsContainer');
+            const projectsTitle = document.getElementById('projectsTitle');
+            const projectsContainer = document.getElementById('projectsContainer');
+            const contactTitle = document.getElementById('contactTitle');
+            const contactExtra = document.getElementById('contactExtra');
+
+            // 联系文本i18n元素
+            const contactTextSpans = document.querySelectorAll('.contact-text');
+
+            // 语言切换时更新联系文本
+            function updateContactTexts() {
+                const lang = currentLang;
+                const map = {
+                    email: { zh: '邮箱', en: 'Email' },
+                    github: { zh: 'GitHub', en: 'GitHub' },
+                    x: { zh: 'X', en: 'X' },
+                    bili: { zh: '哔哩哔哩', en: 'Bilibili' }
+                };
+                contactTextSpans.forEach(span => {
+                    const key = span.getAttribute('data-i18n');
+                    if (key && map[key]) {
+                        span.textContent = map[key][lang];
+                    }
+                });
+            }
+
+            // 渲染主要区域 (profile, skills, projects, contactExtra)
+            function renderMain() {
+                const modeData = content[currentMode][currentLang];
+                // profile
+                const prof = modeData.profile;
+                profileTextDiv.innerHTML = `
+                    <h1>${prof.name}</h1>
+                    <p class="catch-phrase">${prof.catch}</p>
+                    <p style="margin-top: 0.8rem; color:#7c5380; font-size:1.2rem;">${prof.extra}</p>
+                `;
+
+                // 标题
+                skillsTitle.textContent = modeData.skillsTitle;
+                projectsTitle.textContent = modeData.projectsTitle;
+                contactTitle.textContent = modeData.contactTitle;
+
+                // 技能列表
+                let skillsHtml = '';
+                modeData.skills.forEach(s => {
+                    skillsHtml += `
+                        <div class="skill-item">
+                            <span class="skill-name">${s.name}</span>
+                            <div class="progress-wrapper">
+                                <div class="progress-bar"><div class="progress" style="width: ${s.percent}%;"></div></div>
+                                <span class="percent">${s.percent}%</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                skillsContainer.innerHTML = skillsHtml;
+
+                // 项目 (或教育) 卡片
+                let projectsHtml = '';
+                modeData.projects.forEach(p => {
+                    let tagsHtml = '';
+                    p.tags.forEach(t => { tagsHtml += `<span class="tag">${t}</span>`; });
+                    projectsHtml += `
+                        <div class="project-card">
+                            <h3>${p.title}</h3>
+                            <div class="project-tags">${tagsHtml}</div>
+                            <p class="project-desc">${p.desc}</p>
+                        </div>
+                    `;
+                });
+                projectsContainer.innerHTML = projectsHtml;
+
+                // 底部额外信息 (邮箱 + 最后更新)
+                let extra = `<p style="background: #ffeef6; border-radius: 30px; padding: 0.6rem; border: 2px solid #ffc4dd; font-weight:500;">${modeData.extraHtml}`;
+                if (modeData.lastUpdate) {
+                    extra += ` <span style="display:inline-block; margin-left:1rem;">📅 ${modeData.lastUpdate}</span>`;
+                } else {
+                    // 不正经版没有更新日期，但可以不加
+                }
+                extra += `</p>`;
+                contactExtra.innerHTML = extra;
+
+                // 更新联系文本语言
+                updateContactTexts();
+            }
+
+            // 单独更新联系文本（语言切换时，模式不变）
+            function updateLangOnly() {
+                updateContactTexts();
+                // 但主要区域内容也需要根据语言改变 (相同模式，不同语言)
+                // 直接调用renderMain
+                renderMain();
+            }
+
+            // 按钮事件
+            document.getElementById('btnModeCute').addEventListener('click', () => {
+                if (currentMode !== 'cute') {
+                    currentMode = 'cute';
+                    renderMain();
+                }
+                // 激活样式可忽略
+            });
+            document.getElementById('btnModeSerious').addEventListener('click', () => {
+                if (currentMode !== 'serious') {
+                    currentMode = 'serious';
+                    renderMain();
+                }
+            });
+            document.getElementById('btnLangZh').addEventListener('click', () => {
+                if (currentLang !== 'zh') {
+                    currentLang = 'zh';
+                    renderMain();  // 重新渲染(包含联系文本)
+                }
+            });
+            document.getElementById('btnLangEn').addEventListener('click', () => {
+                if (currentLang !== 'en') {
+                    currentLang = 'en';
+                    renderMain();
+                }
+            });
+
+            // 初始化: 使用当前静态内容作为不正经中文，但为了统一，直接调用renderMain覆盖成cute/zh
+            // 注意: 原始HTML的profile内有静态内容，但我们通过renderMain覆盖掉以保证数据一致。
+            // 如果想保留原始完全一样，但上面cute.zh的数据就是从原版复制的，所以没问题。
+            renderMain();
+
+            // 额外: 让头像hover等保留，不冲突。
+        })();
+    </script>
+    <!-- 注: 原静态内容已被JS接管，但保留结构和样式。切换后内容完全由数据驱动。 -->
+</body>
+</html>
