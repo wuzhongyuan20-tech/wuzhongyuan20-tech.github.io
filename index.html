@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>✨ 二次元小窝 · 个人简介 ✨</title>
+    <title>✨ 二次元小窝 · 双生简历 ✨</title>
     <style>
-        /* 全局二次元清新配色 +  cute 风格 */
+        /* 全局二次元清新配色 + cute 风格 (保留原样) */
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +21,6 @@
             overflow-x: hidden;
         }
 
-        /* 萌萌背景小星星 + 光点 */
         body::before {
             content: '';
             position: absolute;
@@ -33,7 +32,6 @@
             z-index: 0;
         }
 
-        /* 主面板——毛茸茸的卡片层 */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -48,7 +46,48 @@
             z-index: 2;
         }
 
-        /* 每个区块标题 ✨ 带装饰 */
+        /* 控制栏——双切换按钮 */
+        .mode-switch-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 2rem;
+            margin-bottom: 2rem;
+            background: rgba(255, 240, 250, 0.6);
+            padding: 0.9rem 1.8rem;
+            border-radius: 60px;
+            border: 2px solid #ffffffd0;
+            box-shadow: 0 6px 0 #d0b2d0;
+        }
+        .switch-btn {
+            background: #ffe6f3;
+            border: 3px solid white;
+            border-radius: 40px;
+            box-shadow: 0 4px 0 #bba5cf, 0 4px 8px #f0c0d0;
+            padding: 0.6rem 1.8rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #713a62;
+            cursor: pointer;
+            transition: 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 2px solid white;
+        }
+        .switch-btn.active {
+            background: #ffcce6;
+            transform: scale(0.96);
+            box-shadow: 0 2px 0 #bba5cf, 0 3px 6px #d9a0c0;
+        }
+        .switch-btn:hover {
+            background: #ffd9f0;
+        }
+        .btn-emoji {
+            font-size: 1.5rem;
+            filter: drop-shadow(0 2px 2px #ffb0d0);
+        }
+
         .section-title {
             font-size: 2rem;
             font-weight: 700;
@@ -60,14 +99,12 @@
             letter-spacing: 2px;
             border-bottom: 4px dotted #ffafd0;
         }
-
         .section-title::before {
             content: "🌸";
             font-size: 1.8rem;
             margin-right: 0.5rem;
             filter: drop-shadow(0 2px 4px #ffa0c0);
         }
-
         .section-title::after {
             content: "🌸";
             font-size: 1.8rem;
@@ -75,7 +112,7 @@
             filter: drop-shadow(0 2px 4px #aac8ff);
         }
 
-        /* ---------- 个人简介头部 ---------- */
+        /* 个人简介头部 */
         .profile {
             display: flex;
             flex-wrap: wrap;
@@ -88,8 +125,6 @@
             border: 2px solid #ffffffb3;
             box-shadow: 0 8px 0 #d0b2d0;
         }
-
-        /* 头像占位——二次元可爱颜文字 */
         .avatar {
             width: 160px;
             height: 160px;
@@ -106,16 +141,13 @@
             color: #6a3e6a;
             background-clip: padding-box;
         }
-
         .avatar:hover {
             transform: scale(0.98) rotate(2deg);
         }
-
         .profile-text {
             flex: 1;
             min-width: 200px;
         }
-
         .profile-text h1 {
             font-size: 2.8rem;
             font-weight: 800;
@@ -124,7 +156,6 @@
             margin-bottom: 0.5rem;
             line-height: 1.2;
         }
-
         .catch-phrase {
             font-size: 1.4rem;
             background: #fff0f5cc;
@@ -138,11 +169,10 @@
             backdrop-filter: blur(4px);
         }
 
-        /* ---------- 技能特长 (漂亮进度条) ---------- */
+        /* 技能 */
         .skills-section {
             margin-bottom: 3.5rem;
         }
-
         .skill-item {
             display: flex;
             flex-wrap: wrap;
@@ -155,7 +185,6 @@
             border: 2px solid #ffeef5;
             box-shadow: 0 4px 0 #cfb0d0;
         }
-
         .skill-name {
             font-size: 1.3rem;
             font-weight: 600;
@@ -168,15 +197,12 @@
             text-align: center;
             border: 2px solid white;
         }
-
-        /* 进度条容器 + 百分比放在同一行 */
         .progress-wrapper {
             display: flex;
             align-items: center;
             gap: 0.8rem;
             flex: 3 1 250px;
         }
-
         .progress-bar {
             flex: 1;
             height: 20px;
@@ -186,16 +212,14 @@
             box-shadow: inset 0 2px 5px #bda0b0, 0 2px 0 #f5c6dc;
             overflow: hidden;
         }
-
         .progress {
             height: 100%;
             background: linear-gradient(90deg, #ff9eb5, #ffc3d0, #fbaac3);
             border-radius: 30px;
-            width: 0%;  /* 由行内样式覆盖 */
+            width: 0%;
             box-shadow: 0 0 8px #ffbfd6;
             transition: width 0.3s ease;
         }
-
         .percent {
             font-weight: 700;
             color: #a54e7a;
@@ -209,34 +233,16 @@
             box-shadow: 0 2px 0 #cf9ac8;
         }
 
-        /* 手机优化：技能名称独占一行 (但我们在媒体查询里精细控制) */
-        @media (max-width: 550px) {
-            .skill-item {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 0.8rem;
-            }
-            .skill-name {
-                align-self: flex-start;
-                width: auto;
-            }
-            .progress-wrapper {
-                width: 100%;
-            }
-        }
-
-        /* ---------- 项目经历卡片 (萌萌二次元风) ---------- */
+        /* 项目卡片 (也用于正经版教育经历) */
         .projects-section {
             margin-bottom: 3rem;
         }
-
         .project-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 2rem;
             margin-top: 1rem;
         }
-
         .project-card {
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(6px);
@@ -246,12 +252,10 @@
             box-shadow: 0 10px 0 #ccafcf, 0 15px 25px #e6c0d0;
             transition: all 0.15s ease;
         }
-
         .project-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 0 #b392bc, 0 20px 30px #d9b0c8;
         }
-
         .project-card h3 {
             font-size: 1.9rem;
             font-weight: 700;
@@ -261,14 +265,12 @@
             border-left: 10px solid #ffafd0;
             padding-left: 0.9rem;
         }
-
         .project-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
             margin: 1rem 0 0.8rem;
         }
-
         .tag {
             background: #ffd9f0;
             padding: 0.3rem 1rem;
@@ -279,7 +281,6 @@
             border: 2px solid white;
             box-shadow: 0 2px 0 #bba6d0;
         }
-
         .project-desc {
             font-size: 1.1rem;
             color: #4d3355;
@@ -287,11 +288,10 @@
             margin: 0.8rem 0;
         }
 
-        /* ---------- 联系方式 (萌系链接按钮) ---------- */
+        /* 联系方式 */
         .contact-section {
             margin-bottom: 0.5rem;
         }
-
         .contact-list {
             display: flex;
             flex-wrap: wrap;
@@ -299,7 +299,6 @@
             justify-content: center;
             margin-top: 1.8rem;
         }
-
         .contact-item {
             flex: 0 1 auto;
             background: #ffe6f3;
@@ -308,12 +307,10 @@
             box-shadow: 0 6px 0 #bba5cf, 0 8px 12px #f0c0d0;
             transition: 0.1s ease;
         }
-
         .contact-item:hover {
             transform: scale(0.96);
             box-shadow: 0 3px 0 #bba5cf, 0 5px 10px #e0b0c0;
         }
-
         .contact-item a {
             display: flex;
             align-items: center;
@@ -326,61 +323,10 @@
             border-radius: 60px;
             background: rgba(255, 240, 250, 0.7);
         }
-
-        /* 图标用纯文本emoji ～ 二次元感满满 */
         .contact-emoji {
             font-size: 2rem;
             filter: drop-shadow(2px 2px 0 #ffc0e0);
         }
-
-        /* 响应式小修整 */
-        @media (max-width: 480px) {
-            .container {
-                padding: 1.5rem 1rem;
-            }
-
-            .profile {
-                flex-direction: column;
-                text-align: center;
-                padding: 1.5rem;
-            }
-
-            .profile-text h1 {
-                font-size: 2.2rem;
-            }
-
-            .catch-phrase {
-                font-size: 1.2rem;
-            }
-
-            .avatar {
-                width: 140px;
-                height: 140px;
-                font-size: 3.2rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .contact-item a {
-                padding: 0.7rem 1.5rem;
-                font-size: 1.1rem;
-            }
-        }
-
-        /* 可爱小彩蛋：鼠标滑过链接变色 */
-        .contact-item a:hover {
-            background: #ffd0ea;
-        }
-
-        /* 名字高亮 */
-        .highlight {
-            background: linear-gradient(120deg, #ffe9b0, #ffd5e8);
-            padding: 0 0.2rem;
-        }
-
-        /* 底部小装饰 */
         .footer-decoration {
             text-align: center;
             margin-top: 2.2rem;
@@ -389,133 +335,505 @@
             letter-spacing: 6px;
             color: #af8db0;
         }
+        .last-update {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #974f7b;
+            background: #fff0f7;
+            border-radius: 30px;
+            padding: 0.4rem 1rem;
+            border: 2px solid #ffc4dd;
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (max-width: 550px) {
+            .skill-item { flex-direction: column; align-items: stretch; gap: 0.8rem; }
+            .skill-name { align-self: flex-start; width: auto; }
+            .progress-wrapper { width: 100%; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 1.5rem 1rem; }
+            .profile { flex-direction: column; text-align: center; padding: 1.5rem; }
+            .profile-text h1 { font-size: 2.2rem; }
+            .catch-phrase { font-size: 1.2rem; }
+            .avatar { width: 140px; height: 140px; font-size: 3.2rem; }
+            .section-title { font-size: 1.8rem; }
+            .contact-item a { padding: 0.7rem 1.5rem; font-size: 1.1rem; }
+        }
 
-        /* 进度条具体宽度用内联 style，这里给默认示例 (另外style写在标签里 但在此处附加一些占位) */
-        /* 我们将在html内填写style属性，也可以直接用内联，没问题 */
+        /* ---------- 正经·简约商业风格 (通过 body 类切换) ---------- */
+        .serious-mode body {
+            background: #f5f7fa;  /* 干净浅灰背景 */
+            padding: 1.5rem;
+        }
+        .serious-mode body::before {
+            display: none;  /* 隐藏所有二次元光点 */
+        }
+        .serious-mode .container {
+            background: #ffffff;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+            border: 1px solid #e9edf4;
+            border-radius: 20px;
+            padding: 2rem 2.2rem;
+        }
+        .serious-mode .mode-switch-bar {
+            background: #f0f4fa;
+            border: 1px solid #d0d9e8;
+            box-shadow: none;
+            border-radius: 40px;
+            padding: 0.7rem 1.5rem;
+        }
+        .serious-mode .switch-btn {
+            background: white;
+            border: 1px solid #cfddee;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.02);
+            color: #1e2b3a;
+            font-weight: 500;
+            border-radius: 30px;
+            padding: 0.5rem 1.5rem;
+        }
+        .serious-mode .switch-btn:hover {
+            background: #e6f0ff;
+        }
+        .serious-mode .section-title {
+            color: #1e293b;
+            text-shadow: none;
+            border-bottom: 3px solid #2b6ed7;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .serious-mode .section-title::before,
+        .serious-mode .section-title::after {
+            content: none;
+        }
+        .serious-mode .profile {
+            background: white;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 10px -2px rgba(0, 20, 40, 0.08);
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+        }
+        .serious-mode .avatar {
+            background: #1e3a8a;  /* 沉稳深蓝 */
+            color: white;
+            font-size: 3rem;
+            border: 3px solid white;
+            box-shadow: 0 8px 14px -6px rgba(0,30,60,0.2);
+            border-radius: 50%;
+            transition: none;
+            font-weight: 500;
+            line-height: 1;
+        }
+        .serious-mode .avatar:hover {
+            transform: none;
+        }
+        .serious-mode .profile-text h1 {
+            color: #0f2b4b;
+            text-shadow: none;
+            font-weight: 700;
+        }
+        .serious-mode .catch-phrase {
+            background: #ecf3fa;
+            border: 1px solid #bdd3ec;
+            box-shadow: none;
+            color: #1e3a5f;
+            border-radius: 30px;
+            font-weight: 500;
+            backdrop-filter: none;
+        }
+        .serious-mode .skill-item {
+            background: white;
+            border: 1px solid #e0e7f0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border-radius: 40px;
+        }
+        .serious-mode .skill-name {
+            background: #edf2f9;
+            border: 1px solid #ccd9ec;
+            color: #1f3a68;
+            box-shadow: none;
+        }
+        .serious-mode .progress-bar {
+            background-color: #e4eaf2;
+            border: 2px solid #f0f4fe;
+            box-shadow: none;
+        }
+        .serious-mode .progress {
+            background: linear-gradient(90deg, #2563eb, #4f83f0);
+            box-shadow: none;
+        }
+        .serious-mode .percent {
+            background: #edf2f9;
+            border: 1px solid #c1d4f0;
+            color: #1f3a68;
+            box-shadow: none;
+        }
+        .serious-mode .project-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 8px -4px rgba(0,0,0,0.04);
+            border-radius: 20px;
+            backdrop-filter: none;
+            padding: 1.5rem;
+        }
+        .serious-mode .project-card h3 {
+            color: #0f2b4b;
+            text-shadow: none;
+            border-left: 5px solid #2563eb;
+            padding-left: 0.8rem;
+        }
+        .serious-mode .tag {
+            background: #edf2f9;
+            border: 1px solid #cbd5e1;
+            color: #25455f;
+            box-shadow: none;
+            border-radius: 20px;
+        }
+        .serious-mode .contact-item {
+            background: transparent;
+            border: 1px solid #cfddee;
+            box-shadow: none;
+            border-radius: 40px;
+        }
+        .serious-mode .contact-item a {
+            background: #f9fcff;
+            color: #1e2b3a;
+            box-shadow: none;
+            border-radius: 40px;
+        }
+        .serious-mode .contact-item a:hover {
+            background: #e0edfe;
+        }
+        .serious-mode .footer-decoration {
+            color: #4b6584;
+            opacity: 1;
+            letter-spacing: normal;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        .serious-mode #contactExtra p {
+            background: #f0f6ff !important;
+            border: 1px solid #cbd6e8 !important;
+            color: #1e2f40 !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 个人简介板块 -->
-        <section class="profile">
-            <div class="avatar" title="二次元头像占位">(◕‿◕✿)</div>
-            <div class="profile-text">
-                <h1>高木 大大 <span class="highlight">⚡</span></h1>
-                <p class="catch-phrase">✨ 来自异世界的游戏苦手 ✨</p>
-                <p style="margin-top: 0.8rem; color:#7c5380; font-size:1.2rem;">🌟 是个绝世非酋 🌟</p>
+        <!-- 双切换按钮 -->
+        <div class="mode-switch-bar">
+            <div class="switch-btn" id="btnModeCute" data-mode="cute">
+                <span class="btn-emoji">😊</span> 不正经版 · Cute
+            </div>
+            <div class="switch-btn" id="btnModeSerious" data-mode="serious">
+                <span class="btn-emoji">🎓</span> 正经版 · Serious
+            </div>
+            <div class="switch-btn" id="btnLangZh" data-lang="zh">
+                <span class="btn-emoji">🇨🇳</span> 中文
+            </div>
+            <div class="switch-btn" id="btnLangEn" data-lang="en">
+                <span class="btn-emoji">🇬🇧</span> English
+            </div>
+        </div>
+
+        <!-- 个人简介板块 (动态填充) -->
+        <section class="profile" id="profileSection">
+            <div class="avatar" id="avatar" title="二次元头像占位">(◕‿◕✿)</div>
+            <div class="profile-text" id="profileText">
+                <!-- 内容由js生成，避免重复静态 -->
             </div>
         </section>
 
-        <!-- 技能特长  (漂亮的进度条) -->
+        <!-- 技能特长 -->
         <section class="skills-section">
-            <h2 class="section-title">技能魔法书</h2>
-            <div class="skill-item">
-                <span class="skill-name">deep seek</span>
-                <div class="progress-wrapper">
-                    <div class="progress-bar"><div class="progress" style="width: 95%;"></div></div>
-                    <span class="percent">95%</span>
-                </div>
-            </div>
-            <div class="skill-item">
-                <span class="skill-name">豆包</span>
-                <div class="progress-wrapper">
-                    <div class="progress-bar"><div class="progress" style="width: 88%;"></div></div>
-                    <span class="percent">88%</span>
-                </div>
-            </div>
-            <div class="skill-item">
-                <span class="skill-name">千问</span>
-                <div class="progress-wrapper">
-                    <div class="progress-bar"><div class="progress" style="width: 78%;"></div></div>
-                    <span class="percent">78%</span>
-                </div>
-            </div>
-            <div class="skill-item">
-                <span class="skill-name">文心一言</span>
-                <div class="progress-wrapper">
-                    <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
-                    <span class="percent">85%</span>
-                </div>
-            </div>
-            <div class="skill-item">
-                <span class="skill-name">元宝</span>
-                <div class="progress-wrapper">
-                    <div class="progress-bar"><div class="progress" style="width: 60%;"></div></div>
-                    <span class="percent">60%</span>
-                </div>
-            </div>
+            <h2 class="section-title" id="skillsTitle"></h2>
+            <div id="skillsContainer" class="skills-container"></div>
         </section>
 
-        <!-- 项目经历 (虚拟) -->
+        <!-- 项目经历 / 教育经历 -->
         <section class="projects-section">
-            <h2 class="section-title">魔法项目</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>✨ 新番吐槽机✨</h3>
-                    <div class="project-tags">
-                        <span class="tag">Nekomoe kissaten</span>
-                        <span class="tag">LoliHouse</span>
-                        <span class="tag">Kusuriya no Hitorigoto</span>
-                    </div>
-                    <p class="project-desc">随时切换战斗形态</p>
-                </div>
-                <div class="project-card">
-                    <h3>🍡 二次元画廊</h3>
-                    <div class="project-tags">
-                        <span class="tag">轻之国度</span>
-                        <span class="tag">venera</span>
-                        <span class="tag">BILIBILI</span>
-                    </div>
-                    <p class="project-desc">动漫插图品鉴，校园轻小说插画收藏，二创美图分享</p>
-                </div>
-                <div class="project-card">
-                    <h3>🐱 游戏领域的游侠</h3>
-                    <div class="project-tags">
-                        <span class="tag">steam</span>
-                        <span class="tag">wegame</span>
-                        <span class="tag">PlayStation</span>
-                    </div>
-                    <p class="project-desc">仅用10分钟熟悉一款游戏，然后维持在普通人的水平。</p>
-                </div>
-            </div>
+            <h2 class="section-title" id="projectsTitle"></h2>
+            <div id="projectsContainer" class="project-grid"></div>
         </section>
 
-        <!-- 联系方式  -->
+        <!-- 联系方式 (固定结构, 但内部文本通过i18n切换) -->
         <section class="contact-section">
-            <h2 class="section-title">找到我</h2>
+            <h2 class="section-title" id="contactTitle"></h2>
             <div class="contact-list">
-                <div class="contact-item">
-                    <a href="2226336683@qq.com" target="_blank">
-                        <span class="contact-emoji">📧</span> 邮箱
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <a href="https://github.com/wuzhongyuan20-tech" target="_blank">
-                        <span class="contact-emoji">🐙</span> GitHub
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <a href="#" target="_blank">
-                        <span class="contact-emoji">🔗</span> X
-                    </a>
-                </div>
-                <div class="contact-item">
-                    <a href="#" target="_blank">
-                        <span class="contact-emoji">🎀</span> 哔哩哔哩
-                    </a>
-                </div>
+                <div class="contact-item"><a href="mailto:2226336683@qq.com" target="_blank"><span class="contact-emoji">📧</span> <span class="contact-text" data-i18n="email">邮箱</span></a></div>
+                <div class="contact-item"><a href="https://github.com/wuzhongyuan20-tech" target="_blank"><span class="contact-emoji">🐙</span> <span class="contact-text" data-i18n="github">GitHub</span></a></div>
+                <div class="contact-item"><a href="#" target="_blank"><span class="contact-emoji">🔗</span> <span class="contact-text" data-i18n="x">X</span></a></div>
+                <div class="contact-item"><a href="#" target="_blank"><span class="contact-emoji">🎀</span> <span class="contact-text" data-i18n="bili">哔哩哔哩</span></a></div>
             </div>
-            <!-- 备用邮箱直接显示占位 也可 -->
-            <p style="text-align: center; margin-top: 1.5rem; color:#974f7b; font-weight: 500; background: #ffeef6; border-radius: 30px; padding: 0.6rem; border: 2px solid #ffc4dd;">
-                ⭐ 主邮箱: 2226336683@qq.com  |  魔法使ID: @Asily
-            </p>
+            <!-- 底部额外信息：邮箱+最后更新 -->
+            <div id="contactExtra" style="text-align: center; margin-top: 1.5rem;"></div>
         </section>
 
-        <!-- 二次元小尾巴装饰 -->
-        <div class="footer-decoration">
+        <div class="footer-decoration" id="footerDeco">
             🍥 🍡 🍧 ごちそうさま 🍧 🍡 🍥
         </div>
     </div>
-    <!-- 额外背景装饰 (完全二次元) 用伪元素已经搞定 -->
+
+    <script>
+        (function() {
+            // ---------- 数据定义 ----------
+            // 模式: cute / serious ; 语言: zh / en
+            const content = {
+                cute: {
+                    zh: {
+                        profile: {
+                            name: '高木 大大 <span class="highlight">⚡</span>',
+                            catch: '✨ 来自异世界的游戏苦手 ✨',
+                            extra: '🌟 是个绝世非酋 🌟'
+                        },
+                        skillsTitle: '技能魔法书',
+                        skills: [
+                            { name: 'deep seek', percent: 95 },
+                            { name: '豆包', percent: 88 },
+                            { name: '千问', percent: 78 },
+                            { name: '文心一言', percent: 85 },
+                            { name: '元宝', percent: 60 }
+                        ],
+                        projectsTitle: '魔法项目',
+                        projects: [
+                            { title: '✨ 新番吐槽机✨', tags: ['Nekomoe kissaten', 'LoliHouse', 'Kusuriya no Hitorigoto'], desc: '随时切换战斗形态' },
+                            { title: '🍡 二次元画廊', tags: ['轻之国度', 'venera', 'BILIBILI'], desc: '动漫插图品鉴，校园轻小说插画收藏，二创美图分享' },
+                            { title: '🐱 游戏领域的游侠', tags: ['steam', 'wegame', 'PlayStation'], desc: '仅用10分钟熟悉一款游戏，然后维持在普通人的水平。' }
+                        ],
+                        contactTitle: '找到我',
+                        extraHtml: '⭐ 主邮箱: 2226336683@qq.com  |  魔法使ID: @Asily',
+                        lastUpdate: null   // 不正经没有最后更新
+                    },
+                    en: {
+                        profile: {
+                            name: 'Takagi <span class="highlight">⚡</span>',
+                            catch: '✨ Gamer from another world ✨',
+                            extra: '🌟 Unlucky chara 🌟'
+                        },
+                        skillsTitle: 'Skill Magic Book',
+                        skills: [
+                            { name: 'deep seek', percent: 95 },
+                            { name: 'Doubao', percent: 88 },
+                            { name: 'Qianwen', percent: 78 },
+                            { name: 'Wenxin Yiyan', percent: 85 },
+                            { name: 'Yuanbao', percent: 60 }
+                        ],
+                        projectsTitle: 'Magic Projects',
+                        projects: [
+                            { title: '✨ Anime Spoil tool', tags: ['Nekomoe', 'LoliHouse', 'Kusuriya'], desc: 'Switch combat forms anytime' },
+                            { title: '🍡 ACG Gallery', tags: ['LightNovel', 'venera', 'BILIBILI'], desc: 'Illustration collection, fanart share' },
+                            { title: '🐱 Game Ranger', tags: ['steam', 'wegame', 'PlayStation'], desc: '10 mins to get familiar, then stay average.' }
+                        ],
+                        contactTitle: 'Contact Me',
+                        extraHtml: '⭐ Email: 2226336683@qq.com  |  Magic ID: @Asily',
+                        lastUpdate: null
+                    }
+                },
+                serious: {
+                    zh: {
+                        profile: {
+                            name: '吴中原',
+                            catch: '🎓 会计学（司法会计方向） · 华东政法大学',
+                            extra: '研究方向：机器学习 | 因果推断 | 财务舞弊调查'
+                        },
+                        skillsTitle: '核心技能',
+                        skills: [
+                            { name: 'Python', percent: 90 },
+                            { name: '数据分析', percent: 88 },
+                            { name: '计量/统计', percent: 85 },
+                            { name: 'Stata', percent: 80 },
+                            { name: '学术写作', percent: 75 }
+                        ],
+                        projectsTitle: '教育/课程经历',
+                        projects: [
+                            { title: '本科 会计学（司法会计方向）', tags: ['华东政法大学', '2024-2028'], desc: '主修：中级会计、数据库、审计学、统计学' },
+                            { title: '硕士 应用统计', tags: ['XX大学', '2028-今'], desc: '研究方向：因果推断、文本挖掘、计量经济学' },
+                            { title: '课程项目', tags: ['Kaggle', '论文复现'], desc: 'Kaggle竞赛前10% · 计量论文 reproducible' }
+                        ],
+                        contactTitle: '联系方式',
+                        extraHtml: '📧 2226336683@qq.com  |  🆔 GitHub: wuzhongyuan20-tech',
+                        lastUpdate: '最后更新: 2026-03-16',
+                        footer: '© 2026 吴中原 · 专业简历'
+                    },
+                    en: {
+                        profile: {
+                            name: 'Zhongyuan Wu',
+                            catch: '🎓 B.S. in Accounting (Forensic) · ECUPL',
+                            extra: 'Interests: ML | Causal Inference | Fraud Detection'
+                        },
+                        skillsTitle: 'Core Skills',
+                        skills: [
+                            { name: 'Python', percent: 90 },
+                            { name: 'Data Analysis', percent: 88 },
+                            { name: 'Econometrics/Stat', percent: 85 },
+                            { name: 'Stata', percent: 80 },
+                            { name: 'Academic Writing', percent: 75 }
+                        ],
+                        projectsTitle: 'Education / Courses',
+                        projects: [
+                            { title: 'B.S. Accounting (Forensic)', tags: ['ECUPL', '2024-2028'], desc: 'Intermediate Accounting, DB, Auditing, Statistics' },
+                            { title: 'M.S. Applied Statistics', tags: ['XX University', '2028-present'], desc: 'Causal Inference, Text Mining, Econometrics' },
+                            { title: 'Projects', tags: ['Kaggle', 'Reproducible'], desc: 'Kaggle top 10% · Reproducible research' }
+                        ],
+                        contactTitle: 'Contact',
+                        extraHtml: '📧 2226336683@qq.com  |  🆔 GitHub: wuzhongyuan20-tech',
+                        lastUpdate: 'Last updated: 2026-03-16',
+                        footer: '© 2026 Zhongyuan Wu · Professional CV'
+                    }
+                }
+            };
+
+            // 当前状态 - 修改默认模式为 'serious' 以符合“默认显示正经版”
+            let currentMode = 'serious';      // 'cute' or 'serious'
+            let currentLang = 'zh';            // 'zh' or 'en'
+
+            // 获取容器
+            const profileTextDiv = document.getElementById('profileText');
+            const skillsTitle = document.getElementById('skillsTitle');
+            const skillsContainer = document.getElementById('skillsContainer');
+            const projectsTitle = document.getElementById('projectsTitle');
+            const projectsContainer = document.getElementById('projectsContainer');
+            const contactTitle = document.getElementById('contactTitle');
+            const contactExtra = document.getElementById('contactExtra');
+            const avatarDiv = document.getElementById('avatar');
+            const footerDeco = document.getElementById('footerDeco');
+
+            // 联系文本i18n元素
+            const contactTextSpans = document.querySelectorAll('.contact-text');
+
+            // 语言切换时更新联系文本
+            function updateContactTexts() {
+                const lang = currentLang;
+                const map = {
+                    email: { zh: '邮箱', en: 'Email' },
+                    github: { zh: 'GitHub', en: 'GitHub' },
+                    x: { zh: 'X', en: 'X' },
+                    bili: { zh: '哔哩哔哩', en: 'Bilibili' }
+                };
+                contactTextSpans.forEach(span => {
+                    const key = span.getAttribute('data-i18n');
+                    if (key && map[key]) {
+                        span.textContent = map[key][lang];
+                    }
+                });
+            }
+
+            // 渲染主要区域 (profile, skills, projects, contactExtra, avatar, footer)
+            function renderMain() {
+                const modeData = content[currentMode][currentLang];
+                // profile
+                const prof = modeData.profile;
+                profileTextDiv.innerHTML = `
+                    <h1>${prof.name}</h1>
+                    <p class="catch-phrase">${prof.catch}</p>
+                    <p style="margin-top: 0.8rem; color:#7c5380; font-size:1.2rem;">${prof.extra}</p>
+                `;
+
+                // 标题
+                skillsTitle.textContent = modeData.skillsTitle;
+                projectsTitle.textContent = modeData.projectsTitle;
+                contactTitle.textContent = modeData.contactTitle;
+
+                // 技能列表
+                let skillsHtml = '';
+                modeData.skills.forEach(s => {
+                    skillsHtml += `
+                        <div class="skill-item">
+                            <span class="skill-name">${s.name}</span>
+                            <div class="progress-wrapper">
+                                <div class="progress-bar"><div class="progress" style="width: ${s.percent}%;"></div></div>
+                                <span class="percent">${s.percent}%</span>
+                            </div>
+                        </div>
+                    `;
+                });
+                skillsContainer.innerHTML = skillsHtml;
+
+                // 项目 (或教育) 卡片
+                let projectsHtml = '';
+                modeData.projects.forEach(p => {
+                    let tagsHtml = '';
+                    p.tags.forEach(t => { tagsHtml += `<span class="tag">${t}</span>`; });
+                    projectsHtml += `
+                        <div class="project-card">
+                            <h3>${p.title}</h3>
+                            <div class="project-tags">${tagsHtml}</div>
+                            <p class="project-desc">${p.desc}</p>
+                        </div>
+                    `;
+                });
+                projectsContainer.innerHTML = projectsHtml;
+
+                // 底部额外信息 (邮箱 + 最后更新)
+                let extra = `<p style="background: #ffeef6; border-radius: 30px; padding: 0.6rem; border: 2px solid #ffc4dd; font-weight:500;">${modeData.extraHtml}`;
+                if (modeData.lastUpdate) {
+                    extra += ` <span style="display:inline-block; margin-left:1rem;">📅 ${modeData.lastUpdate}</span>`;
+                }
+                extra += `</p>`;
+                contactExtra.innerHTML = extra;
+
+                // 更新联系文本语言
+                updateContactTexts();
+
+                // ----- 风格相关额外处理 -----
+                // 1. 根据模式设置 body 类 (正经/不正经)
+                document.body.classList.toggle('serious-mode', currentMode === 'serious');
+
+                // 2. 头像内容：正经模式取姓名首字/字母，不正经保留颜文字
+                if (currentMode === 'serious') {
+                    // 从 prof.name 提取第一个可见字符 (去掉可能的空格)
+                    let firstChar = prof.name.trim().charAt(0);
+                    avatarDiv.textContent = firstChar || '?';
+                    avatarDiv.setAttribute('title', '正经头像');
+                } else {
+                    avatarDiv.textContent = '(◕‿◕✿)';
+                    avatarDiv.setAttribute('title', '二次元头像占位');
+                }
+
+                // 3. 页脚装饰：正经模式使用专用footer，否则二次元
+                if (currentMode === 'serious' && modeData.footer) {
+                    footerDeco.textContent = modeData.footer;
+                } else {
+                    footerDeco.innerHTML = '🍥 🍡 🍧 ごちそうさま 🍧 🍡 🍥';
+                }
+            }
+
+            // 按钮事件
+            document.getElementById('btnModeCute').addEventListener('click', () => {
+                if (currentMode !== 'cute') {
+                    currentMode = 'cute';
+                    renderMain();
+                }
+            });
+            document.getElementById('btnModeSerious').addEventListener('click', () => {
+                if (currentMode !== 'serious') {
+                    currentMode = 'serious';
+                    renderMain();
+                }
+            });
+            document.getElementById('btnLangZh').addEventListener('click', () => {
+                if (currentLang !== 'zh') {
+                    currentLang = 'zh';
+                    renderMain();
+                }
+            });
+            document.getElementById('btnLangEn').addEventListener('click', () => {
+                if (currentLang !== 'en') {
+                    currentLang = 'en';
+                    renderMain();
+                }
+            });
+
+            // 初始化: 由于currentMode已设为serious，默认显示正经中文版
+            renderMain();
+        })();
+    </script>
+    <!-- 注: 原静态内容已被JS接管，切换时风格随模式改变。正经版使用简约商业风格。 -->
 </body>
 </html>
